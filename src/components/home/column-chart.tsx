@@ -1,66 +1,97 @@
-import { DollarOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
-import { Column, BarConfig, ColumnConfig } from '@ant-design/plots';
+import { Column, ColumnConfig } from '@ant-design/plots';
+import { PropsWithChildren } from 'react';
 
-const ColumnChart = () => {
-  const data = [
-    { month: 'Jan', type: 'Waste 1', value: 1200 },
-    { month: 'Jan', type: 'Waste 2', value: 800 },
-    { month: 'Feb', type: 'Waste 1', value: 1500 },
-    { month: 'Feb', type: 'Waste 2', value: 700 },
-    { month: 'Mar', type: 'Waste 1', value: 2000 },
-    { month: 'Mar', type: 'Waste 2', value: 1000 },
-    { month: 'Apr', type: 'Waste 1', value: 800 },
-    { month: 'Apr', type: 'Waste 2', value: 500 },
-    { month: 'May', type: 'Waste 1', value: 1600 },
-    { month: 'May', type: 'Waste 2', value: 1400 },
-    { month: 'Jun', type: 'Waste 1', value: 1800 },
-    { month: 'Jun', type: 'Waste 2', value: 1600 },
-  ];
+interface ColumnChartProps {
+  data: ColumnConfig['data'];
+  title?: string;
+  resultValue?: string;
+  showGrid?: boolean;
+  columnsWidth?: number;
+}
 
+const ColumnChart = ({
+  data,
+  title,
+  resultValue,
+  showGrid = false,
+  columnsWidth = 0.1,
+  children,
+}: PropsWithChildren<ColumnChartProps>) => {
   const config: ColumnConfig = {
     data,
-    isStack: true, // Включаем режим накопления
+    isStack: true,
     xField: 'month',
     yField: 'value',
     seriesField: 'type',
     color: ({ type }: any) => {
-      if (type === 'Waste 1') {
-        return '#ff4d4f'; // Красный
+      if (type === 'Failed') {
+        return '#ff4d4f';
       }
-      return '#52c41a'; // Зеленый
+      return '#52c41a';
     },
-    columnWidthRatio: 0.1, // Ширина колонок
-    label: {
-      position: 'middle',
-      style: {
-        fill: '#FFFFFF',
-        opacity: 0.6,
-      },
-    },
+    columnWidthRatio: columnsWidth,
+    legend: false,
+    label: undefined,
+    ...(!showGrid
+      ? {
+          xAxis: {
+            grid: null,
+          },
+          yAxis: {
+            grid: null,
+          },
+        }
+      : {}),
     interactions: [{ type: 'element-active' }],
   };
 
   return (
     <Card
-    // style={{ width: '200px', height: '200px' }}
-    // headStyle={{ padding: '8px 16px' }}
-    // bodyStyle={{ padding: '24px 24px 0 24px' }}
-    // title={
-    //   <div
-    //     style={{
-    //       display: 'flex',
-    //       alignItems: 'center',
-    //       gap: '8px',
-    //     }}
-    //   >
-    //     <Text size="sm" style={{ marginLeft: '0.5rem' }}>
-    //       Jobs
-    //     </Text>
-    //   </div>
-    // }
+      style={{
+        width: '100%',
+        aspectRatio: '1',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        position: 'relative',
+      }}
+      bodyStyle={{ padding: ' 0 1rem 1rem', justifyContent: 'space-between' }}
+      title={title}
     >
-      <Column {...config} />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '1rem',
+        }}
+      >
+        <span
+          style={{
+            fontWeight: '500',
+            fontSize: '2rem',
+            paddingBottom: '1rem',
+          }}
+        >
+          {resultValue}
+        </span>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+        >
+          {children}
+        </div>
+      </div>
+      <Column
+        {...config}
+        style={{
+          height: '200px',
+          width: '300px',
+          marginTop: '4rem',
+          justifySelf: 'flex-end',
+          alignSelf: 'flex-end',
+        }}
+      />
     </Card>
   );
 };

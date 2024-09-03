@@ -1,10 +1,5 @@
-import {
-  DashboardTotalCountCard,
-  DealsChart,
-  LatestActivities,
-  UpcomingEvents,
-} from '@/components';
-import ColumnChart from '@/components/home/column-chart';
+import { DashboardTotalCountCard, DealsChart } from '@/components';
+import ColumnChartsDashboard from '@/components/home/column-charts-dashboard';
 import { DASHBOARD_TOTAL_COUNTS_QUERY } from '@/graphql/queries';
 import { DashboardTotalCountsQuery } from '@/graphql/types';
 import { useCustom } from '@refinedev/core';
@@ -45,6 +40,8 @@ export const Home = () => {
         </Col>
       </Row>
 
+      <ColumnChartsDashboard />
+
       <Row
         gutter={[32, 32]}
         style={{
@@ -59,9 +56,6 @@ export const Home = () => {
             height: '460px',
           }}
         >
-          <div style={{ marginBottom: '2rem' }}>
-            <ColumnChart />
-          </div>
           <DealsChart />
         </Col>
       </Row>
