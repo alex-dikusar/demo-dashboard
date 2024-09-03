@@ -1,6 +1,7 @@
 import { Card } from 'antd';
 import { Column, ColumnConfig } from '@ant-design/plots';
 import { PropsWithChildren } from 'react';
+import { CaretRightOutlined, CaretLeftOutlined } from '@ant-design/icons';
 
 interface ColumnChartProps {
   data: ColumnConfig['data'];
@@ -8,6 +9,8 @@ interface ColumnChartProps {
   resultValue?: string;
   showGrid?: boolean;
   columnsWidth?: number;
+  nextPage?: () => void;
+  prevPage?: () => void;
 }
 
 const ColumnChart = ({
@@ -16,6 +19,8 @@ const ColumnChart = ({
   resultValue,
   showGrid = false,
   columnsWidth = 0.1,
+  nextPage,
+  prevPage,
   children,
 }: PropsWithChildren<ColumnChartProps>) => {
   const config: ColumnConfig = {
@@ -50,13 +55,14 @@ const ColumnChart = ({
     <Card
       style={{
         width: '100%',
-        aspectRatio: '1',
+        // aspectRatio: '1',
+        borderRadius: '20px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         position: 'relative',
       }}
-      bodyStyle={{ padding: ' 0 1rem 1rem', justifyContent: 'space-between' }}
+      bodyStyle={{ padding: ' 0 1rem 1rem', width: '100%' }}
       title={title}
     >
       <div
@@ -65,6 +71,7 @@ const ColumnChart = ({
           justifyContent: 'space-between',
           alignItems: 'center',
           gap: '1rem',
+          marginTop: '1rem',
         }}
       >
         <span
@@ -72,26 +79,65 @@ const ColumnChart = ({
             fontWeight: '500',
             fontSize: '2rem',
             paddingBottom: '1rem',
+            flexGrow: '1',
           }}
         >
           {resultValue}
         </span>
         <div
-          style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem',
+            flexGrow: '2',
+          }}
         >
           {children}
         </div>
       </div>
-      <Column
-        {...config}
+      <div
         style={{
-          height: '200px',
-          width: '300px',
-          marginTop: '4rem',
-          justifySelf: 'flex-end',
-          alignSelf: 'flex-end',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
         }}
-      />
+      >
+        {prevPage && (
+          <button
+            onClick={prevPage}
+            style={{
+              height: '2rem',
+              background: 'transparent',
+              border: 'none',
+            }}
+          >
+            <CaretLeftOutlined />
+          </button>
+        )}
+        <Column
+          {...config}
+          style={{
+            height: '200px',
+            flexGrow: '1',
+            marginTop: '2rem',
+            justifySelf: 'flex-end',
+            alignSelf: 'flex-end',
+          }}
+        />
+        {nextPage && (
+          <button
+            onClick={nextPage}
+            style={{
+              height: '2rem',
+              background: 'transparent',
+              border: 'none',
+            }}
+          >
+            <CaretRightOutlined size={50} />
+          </button>
+        )}
+      </div>
     </Card>
   );
 };

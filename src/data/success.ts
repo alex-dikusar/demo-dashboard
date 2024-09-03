@@ -1,4 +1,6 @@
 const overallSuccess = [
+  { month: 'Dec', type: 'Failed', value: 750 },
+  { month: 'Dec', type: 'Success', value: 150 },
   { month: 'Jan', type: 'Failed', value: 200 },
   { month: 'Jan', type: 'Success', value: 800 },
   { month: 'Feb', type: 'Failed', value: 500 },
@@ -11,6 +13,16 @@ const overallSuccess = [
   { month: 'May', type: 'Success', value: 1400 },
   { month: 'Jun', type: 'Failed', value: 250 },
   { month: 'Jun', type: 'Success', value: 600 },
+  { month: 'Jul', type: 'Failed', value: 200 },
+  { month: 'Jul', type: 'Success', value: 650 },
+  { month: 'Aug', type: 'Failed', value: 250 },
+  { month: 'Aug', type: 'Success', value: 600 },
+  { month: 'Sep', type: 'Failed', value: 250 },
+  { month: 'Sep', type: 'Success', value: 600 },
+  { month: 'Oct', type: 'Failed', value: 250 },
+  { month: 'Oct', type: 'Success', value: 600 },
+  { month: 'Nov', type: 'Failed', value: 250 },
+  { month: 'Nov', type: 'Success', value: 600 },
 ];
 
 const machineMaterialSuccess = [

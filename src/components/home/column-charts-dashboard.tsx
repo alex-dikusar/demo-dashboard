@@ -8,17 +8,14 @@ import ColumnChart from './column-chart';
 import PlotDropdown from './plot-dropdown';
 import { buildAnomaly, overallAnomaly } from '@/data/anomalies';
 import { buildWaste, machineMaterialWaste, overallWaste } from '@/data/waste';
+import OverallSuccessChart from './OverallSuccessChart';
 
 const ColumnChartsDashBoard = () => {
   return (
     <Row gutter={[32, 32]}>
       <Col xs={24} sm={24} lg={12} xl={8}>
         <Row style={{ padding: '1rem' }}>
-          <ColumnChart
-            data={overallSuccess}
-            title={'Overall Success'}
-            resultValue="90%"
-          />
+          <OverallSuccessChart />
         </Row>
         <Row style={{ padding: '1rem' }}>
           <ColumnChart
@@ -95,7 +92,15 @@ const ColumnChartsDashBoard = () => {
             title={'Build Anomaly Layer %'}
             resultValue="1.23%"
             columnsWidth={0.5}
-          />
+          >
+            <PlotDropdown
+              options={[
+                { label: 'heat exchanger 1', value: 'ex1' },
+                { label: 'heat exchanger 2', value: 'ex2' },
+              ]}
+              defaultValue="ex1"
+            />
+          </ColumnChart>
         </Row>
       </Col>
       <Col xs={24} sm={24} lg={12} xl={8}>

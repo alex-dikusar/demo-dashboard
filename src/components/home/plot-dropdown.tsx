@@ -12,7 +12,7 @@ const PlotDropdown = ({ options, defaultValue }: PlotDropdownProps) => {
         options={options}
         defaultValue={defaultValue}
         style={{
-          width: 200,
+          width: '100%',
           borderRadius: '20px',
           border: '1px solid #d9d9d9',
           padding: '2px 8px',
