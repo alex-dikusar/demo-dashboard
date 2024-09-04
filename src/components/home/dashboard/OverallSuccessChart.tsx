@@ -1,6 +1,6 @@
 import { overallSuccess } from '@/data/success';
 import ColumnChart from './column-chart';
-import usePlotPagination from './dashboard/usePlotPagination';
+import usePlotPagination from './usePlotPagination';
 
 const OverallSuccessChart = () => {
   const { startIndex, endIndex, nextPage, prevPage } = usePlotPagination(

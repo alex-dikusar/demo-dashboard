@@ -1,5 +1,5 @@
 import { DashboardTotalCountCard, DealsChart } from '@/components';
-import ColumnChartsDashboard from '@/components/home/column-charts-dashboard';
+import ColumnChartsDashboard from '@/components/home/dashboard/column-charts-dashboard';
 import { DASHBOARD_TOTAL_COUNTS_QUERY } from '@/graphql/queries';
 import { DashboardTotalCountsQuery } from '@/graphql/types';
 import { useCustom } from '@refinedev/core';
