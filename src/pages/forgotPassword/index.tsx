@@ -1,5 +1,6 @@
-import { AuthPage } from "@refinedev/antd";
+import Logo from '@/components/home/dashboard/Logo';
+import { AuthPage } from '@refinedev/antd';
 
 export const ForgotPassword = () => {
-  return <AuthPage type="forgotPassword" />;
+  return <AuthPage title={<Logo />} type="forgotPassword" />;
 };

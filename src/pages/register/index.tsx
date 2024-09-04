@@ -1,5 +1,6 @@
-import { AuthPage } from "@refinedev/antd";
+import Logo from '@/components/home/dashboard/Logo';
+import { AuthPage } from '@refinedev/antd';
 
 export const Register = () => {
-  return <AuthPage type="register" />;
+  return <AuthPage title={<Logo />} type="register" />;
 };
